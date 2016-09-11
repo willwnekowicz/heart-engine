@@ -140,4 +140,18 @@
   font-size: 20px;
   margin-left: -13px; }
 
+.nervous {
+  text-align: center;
+  margin-top: 15px; }
+  .nervous div {
+    display: inline-block;
+    font-size: 28px;
+    font-weight: bold;
+    color: #ccc;
+    padding: 35px; }
+
+div.nervousSelected {
+  color: #fe0000;
+  text-shadow: 0 1px 1px #999; }
+
 /*# sourceMappingURL=index.css.map */

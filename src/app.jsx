@@ -50,7 +50,9 @@ export default class App extends React.Component {
 						<EndpointSection name="nervous"
 														 demo={<NervousDemo />}
 						/>
-						<EndpointSection name="dead" />
+						<EndpointSection name="dead"
+														 demo={<DeadDemo />}
+						/>
 					</div>
 				</StickyContainer>
 			</div>
@@ -261,7 +263,7 @@ class BpmDemo extends React.Component {
 		return (
 			<div className={styles.demo}>
 				<div className={styles.bpm}>
-					{ this.state.bpm } <span className={styles.bpmUnits}>bpm</span>
+					{ Math.abs(Math.round(this.state.bpm)) } <span className={styles.bpmUnits}>bpm</span>
 				</div>
 			</div>
 		)
@@ -299,7 +301,40 @@ class NervousDemo extends React.Component {
 				<div className={styles.nervous}>
 						<div>Cool cat</div>
 						<div>Excited</div>
-						<div>Incredibly Nervous</div>
+						<div className={styles.nervousSelected}>Incredibly Nervous</div>
+				</div>
+			</div>
+		)
+	}
+}
+
+@HeartEngine()
+class DeadDemo extends React.Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			dead: false,
+		}
+	}
+
+	componentWillMount() {
+		let { stream } = this.props;
+		let params = {
+			deviceId: DEVICE_ID,
+			deviceName: DEVICE_NAME,
+		}
+		stream.subscribe('dead', params, this.onDead)
+	}
+
+	onDead = (msg) => {
+
+	}
+
+	render() {
+		return (
+			<div className={styles.demo}>
+				<div className={styles.dead}>
+
 				</div>
 			</div>
 		)
