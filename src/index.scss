@@ -1,11 +1,54 @@
 .header {
+  text-align: center;
   height: 70px;
+  font-size: 48px;
+  margin-bottom: 25px;
 }
 
 .hero {
-  background: #f3f3f3;
+  background: url('./images/hero.jpg');
   width: 100%;
   height: 400px;
+  padding: 30px 40px;
+  color: #ffffff;
+  font-size: 24px;
+  font-family: 'Ubuntu Mono', monospace;
+}
+
+.graphics {
+  margin: 0 auto;
+  width: 150px;
+}
+
+.heroCharacter {
+  display: inline-block;
+  background: url('./images/character.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 80px;
+  height: 80px;
+  margin-right: 10px;
+}
+
+.heroHeart {
+  display: inline-block;
+  background: url('./images/pixel_heart.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 60px;
+  height: 60px;
+}
+
+.heroDescription {
+  text-align: center;
+  width: 50%;
+  margin: 20px auto;
+  font-size: 32px;
+}
+
+.heroSignup {
+  margin: 40px auto 0;
+  width: 150px;
 }
 
 .sidebar {
@@ -104,9 +147,25 @@
 }
 
 .heart {
-  background: url('./images/heart.png');
+  background: url('./images/pixel_heart.png');
   background-size: contain;
   width: 64px;
-  height: 64px;
+  height: 55px;
   margin: 34px auto;
+}
+
+.bpm {
+  width: 123px;
+  height: 55px;
+  margin: 20px auto;
+  text-shadow: 0 1px 1px #999;
+  font-size: 64px;
+  font-weight: bold;
+  color: #fe0000;
+}
+
+.bpmUnits {
+  color: #222222;
+  font-size: 20px;
+  margin-left: -13px;
 }

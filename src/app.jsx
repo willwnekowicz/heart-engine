@@ -9,7 +9,7 @@ import { StickyContainer, Sticky } from 'react-sticky';
 
 import HeartEngine from './heartengine'
 
-const DEVICE_ID = 'octopicorn'
+const DEVICE_ID = 'will'
 const DEVICE_NAME = 'openbci'
 
 
@@ -17,8 +17,21 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-				<div className={styles.header}></div>
 				<div className={styles.hero}>
+					<div className={styles.header}>
+						heart engine
+					</div>
+					<div className={styles.graphics}>
+						<div className={styles.heroCharacter}></div>
+						<div className={styles.heroHeart}></div>
+					</div>
+					<div className={styles.heroDescription}>
+						Augment your game with heart data
+					</div>
+					<div className={styles.heroSignup}>
+						<div className="createsend-button" data-listid="r/30/409/0FC/6FD71765C4993641">
+						</div>
+					</div>
 				</div>
 				<StickyContainer>
 					<div className={styles.sidebar}>
@@ -27,9 +40,12 @@ export default class App extends React.Component {
 					<div className={styles.main}>
 						<EndpointSection name="beat"
 														 demo={<BeatDemo />}
-														 description="A message is emitted on every pulse."
+														 description="A message is emitted on every heart beat."
 						/>
-						<EndpointSection name="bpm" />
+						<EndpointSection name="bpm"
+														 demo={<BpmDemo />}
+														 description="A message is sent every 3 heart beats extrapolating the rate of beats per minute."
+						/>
 						<EndpointSection name="variability" />
 						<EndpointSection name="nervous" />
 						<EndpointSection name="scared" />
@@ -155,6 +171,7 @@ class Response extends React.Component {
 	}
 
 	render() {
+		let value = this.props.value || 1;
 		return (
 			<div className={styles.codeSnippet}>
 				<div className={styles.codeSnippetTitle}>Response</div>
@@ -210,6 +227,43 @@ class BeatDemo extends React.Component {
 				{ this.state.showHeart ?
 					<div className={styles.heart}></div>
 					: null}
+			</div>
+		)
+	}
+}
+
+@HeartEngine()
+class BpmDemo extends React.Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			bpm: 86,
+		}
+	}
+
+	componentWillMount() {
+		let { stream } = this.props;
+		let params = {
+			deviceId: DEVICE_ID,
+			deviceName: DEVICE_NAME,
+		}
+		stream.subscribe('bpm', params, this.onBpm)
+	}
+
+	componentWillUnmount() {
+		clearTimeout(this.state.timout);
+	}
+
+	onBpm = (msg) => {
+		this.setState({bpm: msg['channel_0']})
+	}
+
+	render() {
+		return (
+			<div className={styles.demo}>
+				<div className={styles.bpm}>
+					{ this.state.bpm } <span className={styles.bpmUnits}>bpm</span>
+				</div>
 			</div>
 		)
 	}
