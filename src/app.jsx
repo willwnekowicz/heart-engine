@@ -7,16 +7,17 @@ import { List, ListItem } from 'material-ui/List';
 import ContentInbox from 'material-ui/svg-icons/content/inbox';
 import { StickyContainer, Sticky } from 'react-sticky';
 
-import injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
+import HeartEngine from './heartengine'
+
+const DEVICE_ID = 'octopicorn'
+const DEVICE_NAME = 'openbci'
+
 
 export default class App extends React.Component {
   render() {
     return (
       <div>
-				<AppBar
-					title="Title"
-				/>
+				<div className={styles.header}></div>
 				<div className={styles.hero}>
 				</div>
 				<StickyContainer>
@@ -24,7 +25,10 @@ export default class App extends React.Component {
 							<Menu />
 					</div>
 					<div className={styles.main}>
-						<EndpointSection name="beat" />
+						<EndpointSection name="beat"
+														 demo={<BeatDemo />}
+														 description="A message is emitted on every pulse."
+						/>
 						<EndpointSection name="bpm" />
 						<EndpointSection name="variability" />
 						<EndpointSection name="nervous" />
@@ -64,7 +68,7 @@ class MenuItem extends React.Component {
 	render() {
 		return (
 			<div className={styles.menuItem}>
-				<a href={'#' + this.props.name}>/{this.props.name}</a>
+				<a href={'#' + this.props.name}>{this.props.name}</a>
 			</div>
 		)
 	}
@@ -79,9 +83,7 @@ class EndpointSection extends React.Component {
 		return (
 			<div className={styles.endpointSection}>
 				<a id={this.props.name}></a>
-				<h1>/{this.props.name}</h1>
-				<p>Global bootstrap css import works too as you can see on the following button.</p>
-				<Endpoint />
+				<Endpoint {...this.props} />
 			</div>
 		)
 	}
@@ -91,7 +93,7 @@ class Endpoint extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			open: false
+			open: true
 		}
 	}
 
@@ -105,12 +107,16 @@ class Endpoint extends React.Component {
 				<div className={styles.endpoint}
 						 onClick={() => {this.toggleView()}}
 				>
-					GET /beat
+					<h1>{this.props.name}</h1>
 				</div>
 				{ this.state.open ?
-					<div>
-						<CodeSnippet />
-						<CodeSnippet />
+					<div className={styles.endpointDetails}>
+						<p>{this.props.description}</p>
+						<div className={styles.codeWrapper}>
+							<Request metric={this.props.name} />
+							<Response metric={this.props.name} />
+						</div>
+						{this.props.demo}
 					</div>
 					: null
 				}
@@ -119,7 +125,7 @@ class Endpoint extends React.Component {
 	}
 }
 
-class CodeSnippet extends React.Component {
+class Request extends React.Component {
 	constructor(props) {
 		super(props)
 	}
@@ -127,10 +133,83 @@ class CodeSnippet extends React.Component {
 	render() {
 		return (
 			<div className={styles.codeSnippet}>
+				<div className={styles.codeSnippetTitle}>Request</div>
+				<div className={styles.codeSnippetDetails}>
+					<pre><code>
+						{JSON.stringify({
+							"type": "subscription",
+							"deviceName": "openbci",
+							"deviceId": "octopicorn",
+							"metric": this.props.metric
+						}, null, 2) }
+					</code></pre>
+				</div>
+			</div>
+		)
+	}
+}
+
+class Response extends React.Component {
+	constructor(props) {
+		super(props)
+	}
+
+	render() {
+		return (
+			<div className={styles.codeSnippet}>
+				<div className={styles.codeSnippetTitle}>Response</div>
+				<div className={styles.codeSnippetDetails}>
 				<pre><code>
-					My pre-formatted code
-					here.
+					{JSON.stringify({
+						"channel_0": 1,
+						"deviceName": "openbci",
+						"deviceId": "octopicorn",
+						"metric": this.props.metric
+					}, null, 2) }
 				</code></pre>
+			</div>
+			</div>
+		)
+	}
+}
+
+@HeartEngine()
+class BeatDemo extends React.Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			showHeart: false,
+			timeout: null
+		}
+	}
+
+	componentWillMount() {
+		let { stream } = this.props;
+		let params = {
+			deviceId: DEVICE_ID,
+			deviceName: DEVICE_NAME,
+		}
+		stream.subscribe('beat', params, this.onBeat)
+	}
+
+	componentWillUnmount() {
+		clearTimeout(this.state.timout);
+	}
+
+	onBeat = () => {
+		let self = this;
+		this.setState({showHeart: true})
+		this.state.timout = setTimeout(() => {
+			self.setState({showHeart: false})
+		}, 250)
+	}
+
+	render() {
+		return (
+			<div className={styles.demo}>
+				{ this.state.showHeart ?
+					<div className={styles.heart}></div>
+					: null}
 			</div>
 		)
 	}

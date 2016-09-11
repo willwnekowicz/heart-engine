@@ -1,3 +1,6 @@
+.header {
+  height: 70px; }
+
 .hero {
   background: #f3f3f3;
   width: 100%;
@@ -16,12 +19,30 @@
   display: inline-block;
   vertical-align: top; }
 
+.codeWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; }
+
 .codeSnippet {
+  width: 48%; }
+
+.codeSnippetTitle {
+  color: #ffffff;
+  background: #333;
+  font-family: monospace;
+  font-size: 13px;
+  padding: 4px 10px;
+  border-bottom: 1px solid #333; }
+
+.codeSnippetDetails {
+  flex: 1 1 auto;
   background: #444444;
-  padding: 15px;
-  margin: 15px 0; }
-  .codeSnippet code {
+  padding: 15px 20px; }
+  .codeSnippetDetails code {
     color: white; }
+  .codeSnippetDetails pre {
+    margin-bottom: 0; }
 
 .menu {
   padding: 15px; }
@@ -43,8 +64,28 @@
   border-bottom: 1px dashed #aaaaaa; }
 
 .endpoint {
-  border: 1px solid #aaaaaa;
-  margin-bottom: 15px;
+  background: #ededed;
+  border-left: 7px solid #aaaaaa;
+  border-bottom: 1px solid #aaaaaa;
+  padding: 10px 15px 8px; }
+
+.endpointDetails {
+  background: #f4f4f4;
   padding: 15px; }
+
+.demo {
+  position: relative;
+  margin: 20px 0 10px;
+  padding: 10px;
+  background: #ffffff;
+  border: 1px solid #888888;
+  min-height: 160px; }
+
+.heart {
+  background: url("./images/heart.png");
+  background-size: contain;
+  width: 64px;
+  height: 64px;
+  margin: 34px auto; }
 
 /*# sourceMappingURL=index.css.map */
