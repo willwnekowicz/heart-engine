@@ -323,7 +323,6 @@ class DeadDemo extends React.Component {
 			deviceId: DEVICE_ID,
 			deviceName: DEVICE_NAME,
 		}
-		stream.subscribe('dead', params, this.onDead)
 	}
 
 	onDead = (msg) => {
