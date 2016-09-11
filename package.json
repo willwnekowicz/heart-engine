@@ -17,10 +17,12 @@
   "homepage": "https://github.com/alicoding/react-webpack-babel#readme",
   "dependencies": {
     "bootstrap": "^4.0.0-alpha.3",
+    "chart.js": "^1.0.2",
     "cloudbrain-websocket": "^1.0.1",
     "material-ui": "^0.15.4",
     "node-sass": "^3.9.2",
     "react": "15.3.0",
+    "react-chartjs": "^0.8.0",
     "react-dom": "15.3.0",
     "react-sticky": "^5.0.5",
     "react-tap-event-plugin": "^1.0.0",

@@ -6,10 +6,11 @@ import Sidebar from './sidebar';
 import { List, ListItem } from 'material-ui/List';
 import ContentInbox from 'material-ui/svg-icons/content/inbox';
 import { StickyContainer, Sticky } from 'react-sticky';
+import LineChartItem from './linechart'
 
 import HeartEngine from './heartengine'
 
-const DEVICE_ID = 'will'
+const DEVICE_ID = 'octopicorn'
 const DEVICE_NAME = 'openbci'
 
 
@@ -46,9 +47,9 @@ export default class App extends React.Component {
 														 demo={<BpmDemo />}
 														 description="A message is sent every 3 heart beats extrapolating the rate of beats per minute."
 						/>
-						<EndpointSection name="variability" />
-						<EndpointSection name="nervous" />
-						<EndpointSection name="scared" />
+						<EndpointSection name="nervous"
+														 demo={<NervousDemo />}
+						/>
 						<EndpointSection name="dead" />
 					</div>
 				</StickyContainer>
@@ -67,9 +68,7 @@ class Menu extends React.Component {
 			<Sticky className={styles.menu}>
 				<MenuItem name="beat" />
 				<MenuItem name="bpm" />
-				<MenuItem name="variability" />
 				<MenuItem name="nervous" />
-				<MenuItem name="scared" />
 				<MenuItem name="dead" />
 			</Sticky>
 		)
@@ -263,6 +262,44 @@ class BpmDemo extends React.Component {
 			<div className={styles.demo}>
 				<div className={styles.bpm}>
 					{ this.state.bpm } <span className={styles.bpmUnits}>bpm</span>
+				</div>
+			</div>
+		)
+	}
+}
+
+@HeartEngine()
+class NervousDemo extends React.Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			nervous: true,
+		}
+	}
+
+	componentWillMount() {
+		let { stream } = this.props;
+		let params = {
+			deviceId: DEVICE_ID,
+			deviceName: DEVICE_NAME,
+		}
+		stream.subscribe('nervous', params, this.onNervous)
+	}
+
+	componentWillUnmount() {
+	}
+
+	onNervous = (msg) => {
+
+	}
+
+	render() {
+		return (
+			<div className={styles.demo}>
+				<div className={styles.nervous}>
+						<div>Cool cat</div>
+						<div>Excited</div>
+						<div>Incredibly Nervous</div>
 				</div>
 			</div>
 		)
