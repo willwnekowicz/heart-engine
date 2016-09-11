@@ -275,7 +275,7 @@ class NervousDemo extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			nervous: true,
+			nervous: 0,
 		}
 	}
 
@@ -292,16 +292,16 @@ class NervousDemo extends React.Component {
 	}
 
 	onNervous = (msg) => {
-
+		this.setState({nervous: msg['channel_0']})
 	}
 
 	render() {
+		let { nervous } = this.state
 		return (
 			<div className={styles.demo}>
 				<div className={styles.nervous}>
-						<div className={styles.nervousDiv}>Calm</div>
-						<div className={styles.nervousSelected}>Excited</div>
-						<div className={styles.nervousDiv}>Nervous</div>
+						<div className={nervous ? styles.nervousDiv :  styles.nervousSelected}>No</div>
+						<div className={nervous ? styles.nervousSelected : styles.nervousDiv}>Yes</div>
 				</div>
 			</div>
 		)
@@ -331,10 +331,12 @@ class DeadDemo extends React.Component {
 	}
 
 	render() {
+		let dead = 0;
 		return (
 			<div className={styles.demo}>
-				<div className={styles.dead}>
-
+				<div className={styles.nervous}>
+					<div className={dead ? styles.nervousDiv :  styles.nervousSelected}>No</div>
+					<div className={dead ? styles.nervousSelected : styles.nervousDiv}>Yes</div>
 				</div>
 			</div>
 		)
