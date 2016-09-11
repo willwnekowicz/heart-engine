@@ -85,7 +85,7 @@ class MenuItem extends React.Component {
 	render() {
 		return (
 			<div className={styles.menuItem}>
-				<a href={'#' + this.props.name}>{this.props.name}</a>
+				<a className={styles.menuLink} href={'#' + this.props.name}>{this.props.name}</a>
 			</div>
 		)
 	}
@@ -152,7 +152,7 @@ class Request extends React.Component {
 			<div className={styles.codeSnippet}>
 				<div className={styles.codeSnippetTitle}>Request</div>
 				<div className={styles.codeSnippetDetails}>
-					<pre><code>
+					<pre><code className={styles.codeStyle}>
 						{JSON.stringify({
 							"type": "subscription",
 							"deviceName": "openbci",
@@ -177,7 +177,7 @@ class Response extends React.Component {
 			<div className={styles.codeSnippet}>
 				<div className={styles.codeSnippetTitle}>Response</div>
 				<div className={styles.codeSnippetDetails}>
-				<pre><code>
+				<pre><code className={styles.codeStyle}>
 					{JSON.stringify({
 						"channel_0": 1,
 						"deviceName": "openbci",
@@ -299,9 +299,9 @@ class NervousDemo extends React.Component {
 		return (
 			<div className={styles.demo}>
 				<div className={styles.nervous}>
-						<div>Cool cat</div>
-						<div>Excited</div>
-						<div className={styles.nervousSelected}>Incredibly Nervous</div>
+						<div className={styles.nervousDiv}>Calm</div>
+						<div className={styles.nervousSelected}>Excited</div>
+						<div className={styles.nervousDiv}>Nervous</div>
 				</div>
 			</div>
 		)

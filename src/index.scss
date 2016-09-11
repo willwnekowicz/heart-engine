@@ -90,13 +90,17 @@
   background: #444444;
   padding: 15px 20px;
 
-  code {
-    color: white;
-  }
-
   pre {
     margin-bottom: 0;
+
+    code {
+      color: white!important;
+    }
   }
+}
+
+.codeStyle {
+  color: white!important;
 }
 
 .menu {
@@ -116,6 +120,15 @@
   a {
     color: #2c2c2c;
     text-decoration: none;
+  }
+}
+
+.menuLink {
+  color: #2c2c2c;
+  text-decoration: none;
+
+  &:hover {
+    border-left: 3px solid #bbbbbb;
   }
 }
 
@@ -182,7 +195,19 @@
   }
 }
 
+.nervousDiv {
+  display: inline-block;
+  font-size: 28px;
+  font-weight: bold;
+  color: #ccc;
+  padding: 35px;
+}
+
 div.nervousSelected {
+  display: inline-block;
+  font-size: 28px;
+  font-weight: bold;
+  padding: 35px;
   color: #fe0000;
   text-shadow: 0 1px 1px #999;
 }

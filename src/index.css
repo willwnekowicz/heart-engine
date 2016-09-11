@@ -77,10 +77,13 @@
   flex: 1 1 auto;
   background: #444444;
   padding: 15px 20px; }
-  .codeSnippetDetails code {
-    color: white; }
   .codeSnippetDetails pre {
     margin-bottom: 0; }
+    .codeSnippetDetails pre code {
+      color: white !important; }
+
+.codeStyle {
+  color: white !important; }
 
 .menu {
   padding: 15px; }
@@ -95,6 +98,12 @@
   .menuItem a {
     color: #2c2c2c;
     text-decoration: none; }
+
+.menuLink {
+  color: #2c2c2c;
+  text-decoration: none; }
+  .menuLink:hover {
+    border-left: 3px solid #bbbbbb; }
 
 .endpointSection {
   padding: 0 0 10px;
@@ -150,7 +159,18 @@
     color: #ccc;
     padding: 35px; }
 
+.nervousDiv {
+  display: inline-block;
+  font-size: 28px;
+  font-weight: bold;
+  color: #ccc;
+  padding: 35px; }
+
 div.nervousSelected {
+  display: inline-block;
+  font-size: 28px;
+  font-weight: bold;
+  padding: 35px;
   color: #fe0000;
   text-shadow: 0 1px 1px #999; }
 
