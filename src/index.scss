@@ -28,3 +28,35 @@
     color: white;
   }
 }
+
+.menu {
+  padding: 15px;
+}
+
+.menuItem {
+  display: block;
+  padding: 5px 8px;
+  margin: 5px 15px;
+  border-left: 3px solid #f1f1f1;
+
+  &:hover {
+    border-left: 3px solid #bbbbbb;
+  }
+
+  a {
+    color: #2c2c2c;
+    text-decoration: none;
+  }
+}
+
+.endpointSection {
+  padding: 0 0 10px;
+  margin: 0 0 10px;
+  border-bottom: 1px dashed #aaaaaa;
+}
+
+.endpoint {
+  border: 1px solid #aaaaaa;
+  margin-bottom: 15px;
+  padding: 15px;
+}

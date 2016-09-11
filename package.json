@@ -21,6 +21,7 @@
     "node-sass": "^3.9.2",
     "react": "15.3.0",
     "react-dom": "15.3.0",
+    "react-sticky": "^5.0.5",
     "react-tap-event-plugin": "^1.0.0",
     "sass-loader": "^4.0.1"
   },
