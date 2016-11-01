@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import CloudbrainWebsocket from 'cloudbrain-websocket';
 
-const URL = 'http://localhost:31415/rt-stream'
+const URL = 'http://node6.getcloudbrain.com:31415/rt-stream'
 
 function HeartEngine() {
 

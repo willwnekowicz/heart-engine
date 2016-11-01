@@ -50,9 +50,6 @@ export default class App extends React.Component {
 						<EndpointSection name="nervous"
 														 demo={<NervousDemo />}
 						/>
-						<EndpointSection name="dead"
-														 demo={<DeadDemo />}
-						/>
 					</div>
 				</StickyContainer>
 			</div>
@@ -71,7 +68,6 @@ class Menu extends React.Component {
 				<MenuItem name="beat" />
 				<MenuItem name="bpm" />
 				<MenuItem name="nervous" />
-				<MenuItem name="dead" />
 			</Sticky>
 		)
 	}
